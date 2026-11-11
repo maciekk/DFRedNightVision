@@ -5,28 +5,38 @@
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <AssemblyName>DFRedNightVision</AssemblyName>
+    <GameManagedDir Condition="'$(GameManagedDir)' == '' and '$(GameDir)' != ''">$(GameDir)/7DaysToDie_Data/Managed</GameManagedDir>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>/home/maciek/games/7D2D DF/7DaysToDie_Data/Managed/Assembly-CSharp.dll</HintPath>
+      <HintPath>$(GameManagedDir)/Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
 
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>/home/maciek/games/7D2D DF/7DaysToDie_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(GameManagedDir)/UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
 
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>/home/maciek/games/7D2D DF/7DaysToDie_Data/Managed/UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>$(GameManagedDir)/UnityEngine.IMGUIModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
     
     <Reference Include="LogLibrary">
-      <HintPath>/home/maciek/games/7D2D DF/7DaysToDie_Data/Managed/LogLibrary.dll</HintPath>
+      <HintPath>$(GameManagedDir)/LogLibrary.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ModInfo.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="ValidateGameManagedDir" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="'$(GameManagedDir)' == '' or !Exists('$(GameManagedDir)/Assembly-CSharp.dll')"
+           Text="Set GameDir to your 7 Days to Die installation, or GameManagedDir to its managed assemblies directory." />
+  </Target>
 
 </Project>

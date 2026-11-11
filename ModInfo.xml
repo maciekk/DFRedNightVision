@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <Name value="DFRedNightVision" />
+  <DisplayName value="DF Red Night Vision" />
+  <Description value="Adds a white camera-attached light while the dfRedNV custom variable is active." />
+  <Author value="maciekk" />
+  <Version value="0.1.0" />
+  <Website value="https://github.com/maciekk/DFRedNightVision" />
+</xml>
